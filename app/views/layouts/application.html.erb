@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <%= render 'shared/head' %>
+  <body class="container">
+    <%= render 'shared/topnav' %>
+    <main>
+      <p id="alert"><%= alert %></p>
+      <p id="notice"><%= notice %></p>
+      <%= yield %>
+    </main>
+    <%= render "shared/footer" %>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<h3 style="user-select: auto;">Vos produits</h3>
+<div class="table-responsive">
+<table class="table table-striped table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% cache @products do %>
+    <% @products.each do |p| %>
+      <% cache p do %>
+    <tr>
+      <td><%= p.created_at.strftime("%d %B %Y") %></td>
+      <td><%= link_to p.title, product_path(p) %></td>
+      <td class="badge bg-info"><%= number_to_currency p.price, unit: "€", separator: ",", format: "%n%u" %></td>
+    </tr>
+    <% end %>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+</div>

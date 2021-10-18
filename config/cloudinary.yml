@@ -1,0 +1,11 @@
+development:
+  cloud_name: "baroka"
+  api_key: "853864583942548"
+  api_secret: "wg7DU_lPWr17aaYqLchkz-fMu-M"
+  secure: true
+
+production:
+  cloud_name: "baroka"
+  api_key: "853864583942548"
+  api_secret: "wg7DU_lPWr17aaYqLchkz-fMu-M"
+  secure: true

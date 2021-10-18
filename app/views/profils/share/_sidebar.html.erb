@@ -1,0 +1,67 @@
+<div class="card">
+  <div class="card-header">
+    <h6>Dashbord</h6>
+  </div>
+  <div class="coard-body dark">
+    <li class="list-group-item d-flex justify-content-between bg-white" style="user-select: auto;">
+      <div class="text-success" style="user-select: auto;">
+        <h6 class="my-0" style="user-select: auto;">
+          <a class="text-decoration-none text-secondary"  href="<%= current_profil_path %>">
+            <i class="fas fa-address-card"></i>
+            Mon profil
+          </a>
+        </h6>
+      </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between bg-light" style="user-select: auto;">
+      <div class="text-success" style="user-select: auto;">
+        <h6 class="my-0" style="user-select: auto;">
+          <a class="text-decoration-none text-secondary"  href="<%= product_path %>">
+            <i class="fab fa-product-hunt"></i>
+            Mes produits
+          </a>
+        </h6>
+      </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between bg-white" style="user-select: auto;">
+      <div class="text-success" style="user-select: auto;">
+        <h6 class="my-0" style="user-select: auto;">
+          <a class="text-decoration-none text-secondary"  href="<%= sell_path%>">
+            <i class="fas fa-money-check-alt"></i>
+            Mes ventes
+          </a>
+        </h6>
+      </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between bg-light" style="user-select: auto;">
+      <div class="text-success" style="user-select: auto;">
+        <h6 class="my-0" style="user-select: auto;">
+          <a class="text-decoration-none text-secondary" href="<%= cart_path(@cart) %>">
+            <i class="fas fa-dolly"></i>
+            Mon panier
+          </a>
+        </h6>
+      </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between bg-white" style="user-select: auto;">
+      <div class="text-success" style="user-select: auto;">
+        <h6 class="my-0 text-success" style="user-select: auto;">
+          <a class="text-decoration-none text-secondary"  href="<%= buy_path %>">
+            <i class="fas fa-shopping-bag"></i>
+            Mes Achats
+          </a>
+        </h6>
+      </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between bg-white" style="user-select: auto;">
+      <div class="text-success" style="user-select: auto;">
+        <h6 class="my-0 text-success" style="user-select: auto;">
+          <a class="text-decoration-none text-success"  href="<%= retrait_path %>">
+            <i class="fas fa-hand-holding-usd"></i>
+            Retraits
+          </a>
+        </h6>
+      </div>
+    </li>
+  </div>
+</div>

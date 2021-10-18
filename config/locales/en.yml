@@ -1,0 +1,5 @@
+en:
+  hello: "Hello world"
+  carts:
+    show:
+      cart_not_found: "Ce panier n'existe pas "

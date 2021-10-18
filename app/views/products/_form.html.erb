@@ -1,0 +1,101 @@
+<div class="row g-5" style="user-select: auto;">
+      <div class="col-md-5 col-lg-4 order-md-last" style="user-select: auto;">
+          <div class="card">
+            <h4 class="d-flex justify-content-center align-items-center mb-3 border-bottom" style="user-select: auto;">
+              <span class="text-warning" style="user-select: auto;">Ajouter un panier</span>
+            </h4>
+            <div class="card-body">
+              <p class="text-sm mb-0"><i class="fas fa-star"></i> Decrivez avec précision ce que vous faites dans votre service. </p><br>
+              <p class="text-sm mb-0"><i class="fas fa-star"></i> Faites attention aux fautes d'orthographe</p><br>
+              <p class="text-sm mb-0"><i class="fas fa-star"></i> Soyez sûr de choisir la bonne categorie</p><br>
+              <p class="text-sm mb-0"><i class="fas fa-star"></i> Choissisez un prix de base : soyez attractif en fonction de votre profil !</p><br>
+              <p class="text-sm mb-0"><i class="fas fa-star"></i> Check the post before publish</p><br>
+              <p class="text-sm mb-0"><i class="fas fa-star"></i> Demandez de l'aide a un conseiller</p><br>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-7 col-lg-8" style="user-select: auto;">
+        <h4 class="mb-3" style="user-select: auto;">Product details</h4>
+        <%= form_with(model: product) do |form| %>
+          <% if product.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(product.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+              <ul>
+                <% product.errors.each do |error| %>
+                  <li><%= product.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="row g-3" style="user-select: auto;">
+            <div class="col-sm-6" style="user-select: auto;">
+              <label for="address" class="form-label" style="user-select: auto;">Product name</label>
+              <%= form.text_field :title, class:"form-control" %>
+              <div class="invalid-feedback" style="user-select: auto;">
+                Please enter name .
+              </div>
+            </div>
+
+            <div class="col-sm-6" style="user-select: auto;">
+              <label for="address" class="form-label" style="user-select: auto;">Category</label>
+              <%= form.collection_select :category_id, Category.order(:name), :id, :name, include_blank: true, class:"form-control",prompt:" choose category"%>
+              <div class="invalid-feedback" style="user-select: auto;">
+                Please enter category .
+              </div>
+            </div>
+
+          <div class="col-sm-6" style="user-select: auto;">
+            <label for="address" class="form-label" style="user-select: auto;">Subcategory</label>
+            <%= form.grouped_collection_select :subcategory_id, Category.order(:name), :subcategories, :name, :id, :name, include_blank: true, class:"form-control", prompt:" choose subcategory" %>
+            <div class="invalid-feedback" style="user-select: auto;">
+              Please enter category .
+            </div>
+          </div>
+          <div class="col-12" style="user-select: auto;">
+            <label for="address" class="form-label" style="user-select: auto;">Product name</label>
+            <%= form.text_area :description, cols: 60, rows: 10, class:"form-control" %>
+            <div class="invalid-feedback" style="user-select: auto;">
+              Please enter description .
+            </div>
+          </div>
+          <div class="col-sm-6" style="user-select: auto;">
+            <label for="address" class="form-label" style="user-select: auto;">Product price</label>
+            <%= form.text_field :price, class:"form-control" %>
+            <div class="invalid-feedback" style="user-select: auto;">
+              Please enter price .
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <label class="text-sm" for="">Delai de livraison <span class="text-danger">*</span></label>
+            <div class="input-group input-group-merge input-group-alternative">
+              <%= form.select(:delivered, options_for_select([['1 day', 1],
+                                    ['2 days', 2],
+                                    ['3 days', 3],
+                                    ['4 days', 4],
+                                    ['5 days', 5],
+                                    ['6 days', 6],
+                                    ['7 days', 7]
+                                    ]),class:"form-control", prompt:"Delai de livraison.." ) %>
+          </div>
+          </div>
+          <div class="col-sm-6" style="user-select: auto;">
+            <label for="address" class="form-label" style="user-select: auto;">Product cover</label>
+            <%= form.file_field :image_url, direct_upload: true,class:"form-control"  %>
+            <div class="invalid-feedback" style="user-select: auto;">
+              Please enter cover .
+            </div>
+          </div>
+
+          <hr class="my-2" style="user-select: auto;">
+
+          <div class="form-check" style="user-select: auto;">
+            <input type="checkbox" class="form-check-input" id="same-address" style="user-select: auto;">
+            <label class="form-check-label" for="same-address" style="user-select: auto;">j'accept les termes et conditions</label>
+          </div>
+
+          <button class="w-100 btn btn-warning btn-lg" type="submit" style="user-select: auto;">Valider</button>
+        <% end %>
+      </div>
+    </div>
+</div>

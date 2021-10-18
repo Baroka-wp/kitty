@@ -1,0 +1,200 @@
+<div class="p-4 p-md-5 mb-4 text-white rounded homepage" style="background-image: url(<%= asset_path 'img/curved-images/curved0.jpg' %>);">
+    <div class="col-md-6 px-0" style="user-select: auto;">
+      <h1 class="display-4 fst-italic" style="user-select: auto;">Au lieu d'attendre l'emploi, créez le votre!</h1>
+      <p class="lead my-3" style="user-select: auto;">Developpez et vendez des produits numeriques sur jobseeker</p>
+      <p class="lead mb-0" style="user-select: auto;"><a href="/users/sign_up" class="text-white fw-bold btn btn-sm btn-primary" style="user-select: auto;">Commencer</a></p>
+    </div>
+</div>
+<div class="container row mb-2" style="user-select: auto;">
+  <h4 class="pb-4 mb-4 fst-italic border-bottom text-center text-success" style="user-select: auto;">
+    Des exemples de ce que vous pouvez vendre sur Jobseeker ...
+  </h4>
+  <% cache @products do %>
+    <% @products.each do |product| %>
+      <% cache product do %>
+      <div class="col-sm-6 col-lg-4 mb-2" style="user-select: auto;">
+            <div class="card shadow-sm" style="user-select: auto;">
+              <%= cl_image_tag(product.image_url.key, width: 200, height: 200, crop: :scale, class:"bd-placeholder-img card-img-top" ) %>
+              <div class="card-body" style="user-select: auto;">
+                <h5 class="mb-2" style="user-select: auto;"><%= product.title %></h5>
+                <p class="card-text" style="user-select: auto;"><%= truncate product.description, length: 80, escape: false  %></p>
+                <small class="text-muted" style="user-select: auto;"><%= product.user.profil.name unless product.user.profil.nil? %></small>
+
+                <div class="d-flex justify-content-center align-items-center" style="user-select: auto;">
+                  <div class="btn-group" style="user-select: auto;">
+                    <%=link_to "A parti de #{number_to_currency product.price, unit: "€", separator: ",", format: "%n%u" }",product, class:"btn btn-md btn-outline-success" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <% end %>
+    <% end %>
+    <nav class="blog-pagination" aria-label="Pagination" style="user-select: auto;">
+      <a class="btn btn-outline-primary" href="<%= new_product_path %>">Ajouter votre product</a>
+    </nav>
+  <% end %>
+</div>
+
+<div class="row mx-auto mb-4" style="user-select: auto;">
+      <h3 class="pb-4 mb-2 border-bottom fst-italic text-center" style="user-select: auto;">
+        Jobseeker vous permet de :
+      </h3>
+      <div class="col-md-12 mb-2">
+        <div class="row d-flex align-items-center">
+          <div class="col-lg-3 col-md-6">
+            <img src="<%= asset_path "img/statue_of_liberty.png"%>" class="img-fluid">
+            <div class="col">
+              <h4 class="pb-4 mb-4 fst-italic border-bottom text-info" style="user-select: auto;">
+                Gagnez en liberté.
+              </h4>
+              <p class="mb-0" style="user-select: auto;">Vendez vos produits numériques de n'importe où, au prix que vous voulez.
+                N'attendez plus d'etre embauché pour commencer votre carrière. <code>Créez votre emploi.</code></p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <img src="<%= asset_path "img/payment_Two Color.png"%>" class="img-fluid">
+            <div class="col">
+              <h4 class="pb-4 mb-4 fst-italic border-bottom text-warning" style="user-select: auto;">
+                Gagnez de l'argent.
+              </h4>
+              <p class="mb-0" style="user-select: auto;">Faites-vous des revenus supplementaires pour assurer votre liberté financière.
+              <code>Retirez vos gains à tout moment </code> </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <img src="<%= asset_path "img/Fitness.png"%>" class="img-fluid">
+            <div class="col">
+              <h4 class="pb-4 mb-4 fst-italic border-bottom text-danger" style="user-select: auto;">
+                Gagnez en experience.
+              </h4>
+              <p class="mb-0" style="user-select: auto;">Améliorer vos compétences en la confrontant á une demande. Apprenez des autres et lisez notre blog pour apprendre comment developper des produits numériques attractifs.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <img src="<%= asset_path "img/Designer _Outline.png"%>" class="img-fluid">
+            <div class="col">
+              <h4 class="pb-4 mb-4 fst-italic border-bottom text-success" style="user-select: auto;">
+                Realiser vos projets.
+              </h4>
+              <p class="mb-0" style="user-select: auto;">Jobseeker est une communauté. Vous y trouverez des produits qui vont vous aider à faire avancer vos projets. Payez sans frais sur la plateform avec vos revenus gagnés sur jobseeker.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+<br><br><br>
+<div class="row d-flex align-items-center mt-4 text-center" style="user-select: auto;">
+    <div class="col-4">
+      <h2 class="pb-4 mb-2  fst-italic text-center" style="user-select: auto;">
+       Les questions frequemment posées
+      </h2>
+    </div>
+    <div class="col-8">
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            Que puis-je vendre sur jobseeker ?
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">Produits numériques, produits physiques et abonnements
+            - presque n'importe quoi ! Les créateurs de presque toutes les industries utilisent (et adorent) jobseeker,
+            des artistes numériques, écrivains, musiciens et autres types créatifs aux entrepreneurs et gourous de la technologie
+            à l'esprit d'entreprise comme nos créateurs SaaS. <strong class="text-info"> Vous povez vendre tous produits numeriques livrables numeriquement</strong></div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            Que ne puis-je pas vendre sur jobseeker ?
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">C'est simple. Vous ne pouvez pas vendre des produits qui nécessitent une livraison phisique. VOus pouvez vendre un e-book et pas un livre physique.
+            Vous pouvez vendre un film annimé que vous avez réalisé mais pas une cassette. <strong class="text-danger"> C'est en cela que Jobseeker rend votre produit scalable.</strong></div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            Comment puis-je être payé ?
+          </button>
+        </h2>
+        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body"> L'objectif de Jobseeker est d'aider les créateurs à gagner leur vie en faisant ce qu'ils aiment, c'est pourquoi nous simplifions autant que possible la rémunération. La façon dont nous rémunérons les créateurs, que ce soit par dépôt direct ou <code>PayPal</code> ou <code>Stripe</code> , varie selon les pays.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+            Comment puis-je commencer á vendre  ?
+          </button>
+        </h2>
+        <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">C'est facile de commencer par vendre sur jobseeker. Il suffit de<a class="btn btn-sm btn-info" href="<%= new_product_path %>">creer votre compte ici..</a> <code>En plus c'est gratuit</code> </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingFive">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+            Quels sont les frais ?
+          </button>
+        </h2>
+        <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">C'est simple. Vous ne payez des frais que lorsque vous vendez reelement et que le clients est satifait. Les frais ne sont que de <code>10 %</code> des revenus que vous decidez de retirer. Vous pouvez donc acheter sans frais des produits sur jobseeker avec vos revenus.
+          <a class="btn btn-sm btn-info" href="<%= new_product_path %>">creer votre compte ici..</a>  </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+<br><br><br>
+<div class="row mb-2 mt-4" style="user-select: auto;">
+  <h2 class="pb-4 mb-2 border-bottom fst-italic text-center" style="user-select: auto;">
+    Quelques témoignages sur Jobseeker  :
+  </h2>
+    <div class="col-md-6" style="user-select: auto;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="user-select: auto;">
+        <div class="col-auto d-float" style="margin-top:-3;">
+          <img src="<%=asset_path "img/team-2" %>" alt="" class="bd-placeholder-img" width="100%" height="250">
+        </div>
+        <div class="col p-4 d-flex flex-column position-static" style="user-select: auto;">
+          <strong class="d-inline-block mb-2 text-success" style="user-select: auto;">John Snow</strong>
+          <h3 class="mb-2" style="user-select: auto;">Disigner</h3>
+          <p class="mb-auto" style="user-select: auto;">"J'ai géneré cette année déjà plus de 2000 euros par mois. Jobseeker m'a permis de gagner ma vie en vendant mes produits, en plus Jobseeker est fortement impliqués dans le succès du créateur. "</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6" style="user-select: auto;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="user-select: auto;">
+        <div class="col-auto d-float" style="margin-top:-3;">
+          <img src="<%=asset_path "img/team-1" %>" alt="" class="bd-placeholder-img" width="100%" height="250">
+        </div>
+        <div class="col p-4 d-flex flex-column position-static" style="user-select: auto;">
+          <strong class="d-inline-block mb-2 text-warning" style="user-select: auto;">Marie Antoinette</strong>
+          <h3 class="mb-2" style="user-select: auto;">Editorialiste</h3>
+          <p class="mb-auto" style="user-select: auto;">"J'ai géneré plus de 20.000 euros en un an en vendant mes e-books et des contenues sur des site web. Jobseeker m'a permis commencer ma carrière sans attendre d'etre employé par une entreprise classique. "</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" style="user-select: auto;">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="user-select: auto;">
+        <div class="col-auto d-float" style="margin-top:-3;">
+          <img src="<%=asset_path "img/team-4" %>" alt="" class="bd-placeholder-img" width="100%" height="250">
+        </div>
+        <div class="col p-4 d-flex flex-column position-static" style="user-select: auto;">
+          <strong class="d-inline-block mb-2 text-info" style="user-select: auto;">Marie Antoinette</strong>
+          <h3 class="mb-2" style="user-select: auto;">Programmeur de logiciel</h3>
+          <p class="mb-auto" style="user-select: auto;">"J'ai vendu sur jobseeker des logiciels et des bouts de code fonctionnel. Ce aui m'a permi de gagner de l'argent et pouvoir me concentrer sur d'autres projets. Jobseeker c'est aussi une merveilleuse communauté ou j'ai trouver des gens très creatifs et competents"</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 text-center" style="margin:auto auto;">
+      <nav class="blog-pagination" aria-label="Pagination" style="user-select: auto;">
+        <a class="btn btn-info" href="<%= new_product_path %>">Commencer maintenant</a>
+      </nav>
+    </div>
+</div>

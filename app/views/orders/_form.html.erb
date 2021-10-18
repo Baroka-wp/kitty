@@ -1,0 +1,108 @@
+<div class="row g-5" style="user-select: auto;">
+      <div class="col-md-5 col-lg-4 order-md-last" style="user-select: auto;">
+        <h4 class="d-flex justify-content-between align-items-center mb-3" style="user-select: auto;">
+          <span class="text-warning" style="user-select: auto;">Votre Panier</span>
+          <span class="badge bg-warning rounded-pill" style="user-select: auto;"><%= render "line_items/cart_count" %></span>
+        </h4>
+        <ul class="list-group mb-3" style="user-select: auto;">
+          <% @cart.line_items.each do |item| %>
+            <% cache item do %>
+              <li class="list-group-item d-flex justify-content-between lh-sm" style="user-select: auto;">
+                <div style="user-select: auto;">
+                  <h6 class="my-0" style="user-select: auto;"><%= item.product.title %></h6>
+                  <small class="text-muted" style="user-select: auto;">x <span id="item_quantity<%= item.id %>"><%=render "line_items/quantity", item: item%></small>
+                </div>
+                <span class="text-muted" style="user-select: auto;"><%=number_to_currency item.total, unit: "€", separator: ",", format: "%n%u" %></span>
+              </li>
+              <% end %>
+          <% end %>
+          <li class="list-group-item d-flex justify-content-between bg-light" style="user-select: auto;">
+            <div class="text-success" style="user-select: auto;">
+              <h6 class="my-0" style="user-select: auto;"> TVA</h6>
+              <small style="user-select: auto;">18 %</small>
+            </div>
+            <span class="text-success" style="user-select: auto;"><%= number_to_currency @cart.tva, unit: "€", separator: ",", format: "%n%u" %></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between bg-light" style="user-select: auto;">
+            <div class="text-success" style="user-select: auto;">
+              <h6 class="my-0" style="user-select: auto;">Livraison</h6>
+              <small style="user-select: auto;">FORFAIT</small>
+            </div>
+            <span class="text-success" style="user-select: auto;"><%= number_to_currency @cart.livraison, unit: "€", separator: ",", format: "%n%u" %></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between" style="user-select: auto;">
+            <span style="user-select: auto;">Total (EUR)</span>
+            <strong style="user-select: auto;"><%= number_to_currency @cart.ttc, unit: "€", separator: ",", format: "%n%u" %></strong>
+          </li>
+        </ul>
+
+        <form class="card p-2" style="user-select: auto;">
+          <div class="input-group" style="user-select: auto;">
+            <input type="text" class="form-control" placeholder="Promo code" style="user-select: auto;">
+            <button type="submit" class="btn btn-secondary" style="user-select: auto;">Redeem</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-7 col-lg-8" style="user-select: auto;">
+        <h4 class="mb-3" style="user-select: auto;">Billing address</h4>
+        <%= form_with(model: order) do |form| %>
+          <% if order.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+              <ul>
+                <% order.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="row g-3" style="user-select: auto;">
+            <div class="col-sm-6" style="user-select: auto;">
+              <label for="firstName" class="form-label" style="user-select: auto;">First name</label>
+              <%= form.text_field :first_name, class:"form-control", id: "firstName" %>
+              <div class="invalid-feedback" style="user-select: auto;">
+                Valid first name is required.
+              </div>
+            </div>
+
+            <div class="col-sm-6" style="user-select: auto;">
+              <label for="lastName" class="form-label" style="user-select: auto;">Last name</label>
+              <%= form.text_field :last_name, class: "form-control", id: "firstName" %>
+              <div class="invalid-feedback" style="user-select: auto;">
+                Valid last name is required.
+              </div>
+            </div>
+
+            <div class="col-12" style="user-select: auto;">
+              <label for="username" class="form-label" style="user-select: auto;">Username</label>
+              <div class="input-group has-validation" style="user-select: auto;">
+                <span class="input-group-text" style="user-select: auto;">@</span>
+                <%= form.text_field :email, class:"form-control", id:"email", placeholder:"email"  %>
+              <div class="invalid-feedback" style="user-select: auto;">
+                  Your email is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12" style="user-select: auto;">
+              <label for="address" class="form-label" style="user-select: auto;">Address</label>
+              <%= form.text_field :adresse, class:"form-control", id:"address", placeholder:"1234 Main St"  %>
+              <div class="invalid-feedback" style="user-select: auto;">
+                Please enter your shipping address.
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4" style="user-select: auto;">
+
+          <div class="form-check" style="user-select: auto;">
+            <input type="checkbox" class="form-check-input" id="same-address" style="user-select: auto;">
+            <label class="form-check-label" for="same-address" style="user-select: auto;">j'accept les termes et conditions</label>
+          </div>
+          <hr class="my-4" style="user-select: auto;">
+
+          <button class="w-100 btn btn-warning btn-lg" type="submit" style="user-select: auto;">Valider</button>
+        <% end %>
+      </div>
+    </div>

@@ -1,0 +1,28 @@
+<h3 style="user-select: auto;">Vos Achats</h3>
+<div class="table-responsive">
+<table class="table table-striped table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Product nam</th>
+      <th scope="col">Price</th>
+      <th scope="col">status</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% cache @orders do %>
+    <% @orders.each do |order| %>
+      <% cache order do %>
+    <tr>
+      <td><%= porder.created_at.strftime("%d %B %Y") %></td>
+      <td>Je vais vous ecrire un livre</td>
+      <td class="badge bg-info"><%= number_to_currency 50, unit: "€", separator: ",", format: "%n%u" %></td>
+      <td><%= order.status %></td>
+      <td><%= link_to "show", order %></td>
+    </tr>
+    <% end %>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+</div>

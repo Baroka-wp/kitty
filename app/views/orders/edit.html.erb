@@ -1,0 +1,75 @@
+<h1>Editing Order</h1>
+<div class="col-md-7 col-lg-8" style="user-select: auto;">
+  <h4 class="mb-3" style="user-select: auto;">Billing address</h4>
+  <%= form_with(model: @order) do |form| %>
+    <% if @order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+        <ul>
+          <% @order.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row g-3" style="user-select: auto;">
+      <div class="col-sm-6" style="user-select: auto;">
+        <label for="firstName" class="form-label" style="user-select: auto;">First name</label>
+        <%= form.text_field :first_name, class:"form-control", id: "firstName" %>
+        <div class="invalid-feedback" style="user-select: auto;">
+          Valid first name is required.
+        </div>
+      </div>
+
+      <div class="col-sm-6" style="user-select: auto;">
+        <label for="lastName" class="form-label" style="user-select: auto;">Last name</label>
+        <%= form.text_field :last_name, class: "form-control", id: "firstName" %>
+        <div class="invalid-feedback" style="user-select: auto;">
+          Valid last name is required.
+        </div>
+      </div>
+
+      <div class="col-12" style="user-select: auto;">
+        <label for="username" class="form-label" style="user-select: auto;">Username</label>
+        <div class="input-group has-validation" style="user-select: auto;">
+          <span class="input-group-text" style="user-select: auto;">@</span>
+          <%= form.text_field :email, class:"form-control", id:"email", placeholder:"email"  %>
+        <div class="invalid-feedback" style="user-select: auto;">
+            Your email is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12" style="user-select: auto;">
+        <label for="address" class="form-label" style="user-select: auto;">Address</label>
+        <%= form.text_field :adresse, class:"form-control", id:"address", placeholder:"1234 Main St"  %>
+        <div class="invalid-feedback" style="user-select: auto;">
+          Please enter your shipping address.
+        </div>
+      </div>
+      <div class="col-12" style="user-select: auto;">
+        <label for="address" class="form-label" style="user-select: auto;">Status</label>
+            <%= form.select(:status,
+                            options_for_select(statuts_for_select, @order.status),
+                            {}, class: 'custom-select') %>
+        <div class="invalid-feedback" style="user-select: auto;">
+          Please enter your shipping address.
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4" style="user-select: auto;">
+
+    <div class="form-check" style="user-select: auto;">
+      <input type="checkbox" class="form-check-input" id="same-address" style="user-select: auto;">
+      <label class="form-check-label" for="same-address" style="user-select: auto;">j'accept les termes et conditions</label>
+    </div>
+    <hr class="my-4" style="user-select: auto;">
+
+    <button class="w-100 btn btn-warning btn-lg" type="submit" style="user-select: auto;">Valider</button>
+  <% end %>
+</div>
+
+<%= link_to 'Show', @order %> |
+<%= link_to 'Back', orders_path %>

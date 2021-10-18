@@ -1,0 +1,86 @@
+<div class="row g-5" style="user-select: auto;">
+      <div class="col-md-5 col-lg-4 order-md-last" style="user-select: auto;">
+          <div class="card">
+            <h4 class="d-flex justify-content-center align-items-center mb-3 border-bottom" style="user-select: auto;">
+              <span class="text-warning" style="user-select: auto;">Astuses !</span>
+            </h4>
+            <div class="card-body">
+              <p class="text-sm mb-0"><i class="fas fa-star"></i> Decrivez votre profil en quelques mots  </p><br>
+              <p class="text-sm mb-0"><i class="fas fa-star"></i> Faites attention aux fautes d'orthographe</p><br>
+              <p class="text-sm mb-0"><i class="fas fa-star"></i> Nous verifirons votre identité. Si tout est ok, votre profil sera activé et vous pouvez commencer à vendre vos produits numériques </p><br>
+              <p class="text-sm mb-0"><i class="fas fa-star"></i> Votre numero de telephone et vos document d'identitê ne seront pas affichés sur jobseeker</p><br>
+              <p class="text-sm mb-0"><i class="fas fa-star"></i> Demandez de l'aide a un conseiller</p><br>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-7 col-lg-8" style="user-select: auto;">
+        <h4 class="mb-3" style="user-select: auto;">Parlez-nous un peu de vous ...</h4>
+        <%= form_with(model: profil) do |form| %>
+          <% if profil.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(profil.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+              <ul>
+                <% product.errors.each do |error| %>
+                  <li><%= profil.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="row g-3" style="user-select: auto;">
+            <div class="col-sm-6" style="user-select: auto;">
+              <label for="address" class="form-label" style="user-select: auto;">Votre nom d'utilisateur </label>
+              <%= form.text_field :name, class:"form-control" %>
+              <div class="invalid-feedback" style="user-select: auto;">
+                Please enter name .
+              </div>
+            </div>
+            <div class="col-sm-6" style="user-select: auto;">
+              <label for="address" class="form-label" style="user-select: auto;">Votre photo de profil</label>
+              <%= form.file_field :avatar, direct_upload: true,class:"form-control"  %>
+              <div class="invalid-feedback" style="user-select: auto;">
+                Please enter avatar .
+              </div>
+            </div>
+          <div class="col-12" style="user-select: auto;">
+            <label for="address" class="form-label" style="user-select: auto;">Une petite bio</label>
+            <%= form.text_area :bio, cols: 60, rows: 5, class:"form-control" %>
+            <div class="invalid-feedback" style="user-select: auto;">
+              Please enter bio .
+            </div>
+          </div>
+          <div class="col-sm-6" style="user-select: auto;">
+            <label for="address" class="form-label" style="user-select: auto;">Telephone</label>
+            <%= form.text_field :telephone, class:"form-control" %>
+            <div class="invalid-feedback" style="user-select: auto;">
+              Please enter telephone .
+            </div>
+          </div>
+          <div class="input-group input-group-merge input-group-alternative">
+            <label for="">Fournissez un document pour verifier votre identité</label>
+            <%= form.select(:doc_type, options_for_select([['CNI', 1],
+                                  ['Passport', 2],
+                                  ['RAVIP', 3]
+                                  ]),class:"form-control", prompt:"Type de document" ) %>
+        </div>
+        <div class="col-sm-6" style="user-select: auto;">
+          <label for="address" class="form-label" style="user-select: auto;">Téléverser le document ici (en .png/.jpeg/.jpg )</label>
+          <%= form.file_field :document, class:"form-control" %>
+          <div class="invalid-feedback" style="user-select: auto;">
+            Please enter document .
+          </div>
+        </div>
+
+
+          <hr class="my-2" style="user-select: auto;">
+
+          <div class="form-check" style="user-select: auto;">
+            <input type="checkbox" class="form-check-input" id="same-address" style="user-select: auto;">
+            <label class="form-check-label" for="same-address" style="user-select: auto;">j'accept les termes et conditions</label>
+          </div>
+
+          <button class="w-100 btn btn-warning btn-lg" type="submit" style="user-select: auto;">Valider</button>
+        <% end %>
+      </div>
+    </div>
+</div>
