@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "/sell", to:"pages#sell"
   get "/panier", to:"pages#panier"
   get "/retrait", to:"pages#retrait"
-  get "/product", to:"pages#product"
+  get "/myproduct", to:"pages#product"
 
   devise_for :users
   resources :orders
