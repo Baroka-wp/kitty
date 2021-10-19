@@ -2,7 +2,8 @@ class LineItemsController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:create, :destroy]
   before_action :set_line_item, only: %i[ show edit update destroy ]
-  
+  #before_action :check_cart, only: [:create]
+
   def index
     @line_items = LineItem.all
   end
@@ -18,8 +19,9 @@ class LineItemsController < ApplicationController
   end
 
   def create
-    product = Product.find(params[:product_id])
-    @line_item = @cart.add_product(product)
+    @product = Product.find(params[:product_id])
+    @line_item = LineItem.new(product: @product)
+    @line_item.cart_id = @cart.id
     respond_to do |format|
       if @line_item.save
         if params[:current_page] == "cart"
@@ -68,6 +70,17 @@ class LineItemsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def line_item_params
       params.require(:line_item).permit(:cart_id, :product_id, :quantity)
+    end
+
+    #check user
+    def check_cart
+      @product = Product.find(params[:product_id])
+      if @product.user_id == current_user.id
+        redirect_to profil_path(current_user.id)
+      end
+      unless @cart.line_item.nil?
+        redirect_to root_path, alert: "Your cart still has items. Please validate before "
+      end
     end
 
 end

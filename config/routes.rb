@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "/panier", to:"pages#panier"
   get "/retrait", to:"pages#retrait"
   get "/myproduct", to:"pages#product"
+  post "/validate_order", to:"orders#validate_order"
 
   devise_for :users
   resources :orders

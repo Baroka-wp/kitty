@@ -22,10 +22,10 @@ class ChargesController < ApplicationController
       currency: 'eur',
     })
     @order = Order.find(params[:order_id])
-    @order.update(status: "Payed")
-    #@cart.line_items.destroy_all
-    #session.delete(:cart_id)
-    redirect_to request.referrer
+    @order.update(status: "payed")
+    @cart.destroy
+    session.delete(:cart_id)
+    redirect_to request.referrer, notice:"Paiement accepté !"
 
   rescue Stripe::CardError => e
     flash[:error] = e.message

@@ -9,6 +9,10 @@ class PagesController < ApplicationController
   end
 
   def sell
+    @sells = Order.where(seller_id: current_user.id)
+
+    @sells_validate = Order.where(seller_id: current_user.id, status: "sent")
+    @solde = @sells_validate.to_a.sum(&:cart_total)
   end
 
   def panier

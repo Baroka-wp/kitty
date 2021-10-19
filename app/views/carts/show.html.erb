@@ -3,7 +3,7 @@
 
       <article class="blog-post" style="user-select: auto;">
         <h3 style="user-select: auto;">Votre panier</h3>
-        <%if @cart.line_items.empty? %>
+        <%if @cart.line_item.nil? %>
         <p style="user-select: auto;">Votre panier est vide</p>
 
         <% else %>
@@ -18,17 +18,17 @@
             </tr>
           </thead>
           <tbody style="user-select: auto;">
-            <% @cart.line_items.each do |item| %>
-              <% cache item do %>
+            <%# @cart.line_items.each do |item| %>
+              <% cache @cart.line_item do %>
                 <tr style="user-select: auto;">
-                  <td><%= cl_image_tag(item.product.image_url.key, width: 40, height: 40, crop: :scale, class:"bd-placeholder-img" ) %></td>
-                  <td><%=item.product.title%></td>
-                  <td> x <span id="item_quantity<%= item.id %>"><%=render "line_items/quantity", item: item%></span><span><%#=button_to " ajouter la quantité",line_items_path(product_id: item.product, current_page: "cart"), remote: true, class:"btn btn-sm btn-warning" %></span></td>
-                  <td><%=number_to_currency item.total, unit: "€", separator: ",", format: "%n%u" %></td>
-                  <td><%= button_to "X", item, method: :delete, data: { confirm: "Êtes-vous sûr ?" }, remote: true,class: "btn btn-sm btn-outline-danger" %></td>
+                  <td><%= cl_image_tag(@cart.line_item.product.image_url.key, width: 40, height: 40, crop: :scale, class:"bd-placeholder-img" ) %></td>
+                  <td><%=@cart.line_item.product.title%></td>
+                  <td> x <span id="item_quantity<%= @cart.line_item.id %>"><%=render "line_items/quantity", item: @cart.line_item.id%></span><span><%#=button_to " ajouter la quantité",line_items_path(product_id: item.product, current_page: "cart"), remote: true, class:"btn btn-sm btn-warning" %></span></td>
+                  <td><%=number_to_currency @cart.line_item.total, unit: "€", separator: ",", format: "%n%u" %></td>
+                  <td><%= button_to "X", @cart.line_item, method: :delete, data: { confirm: "Êtes-vous sûr ?" }, remote: true,class: "btn btn-sm btn-outline-danger" %></td>
                 </tr>
               <% end %>
-            <% end %>
+            <%# end %>
           </tbody>
         </table>
         <%#= button_to "Vider le panier", @cart, method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-sm btn-outline-dark" %>

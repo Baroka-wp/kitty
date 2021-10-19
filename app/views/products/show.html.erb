@@ -3,7 +3,7 @@
       <div class="col-md-8" style="user-select: auto;">
         <article class="blog-post" style="user-select: auto;">
           <h2 class="blog-post-title" style="user-select: auto;"><%= @product.title %></h2>
-          <p class="blog-post-meta" style="user-select: auto;">Posté le : <%= @product.created_at.to_time.strftime('%B %e') %> by <a href="#" style="user-select: auto;">Mark</a></p>
+          <p class="blog-post-meta" style="user-select: auto;">Posté le : <%= @product.created_at.to_time.strftime('%B %e') %> by <a href="#" style="user-select: auto;"><%= @product.user.profil.name %></a></p>
           <hr style="user-select: auto;">
           <h2 style="user-select: auto;">Description</h2>
           <p style="user-select: auto;"><%= @product.description %></p>
@@ -28,14 +28,15 @@
 
           <strong class="d-inline-block mb-2 text-primary" style="user-select: auto;"><%= number_to_currency @product.price, unit: "€", separator: ",", format: "%n%u" %></strong>
           <hr>
-          <nav class="m-2" aria-label="Pagination" style="user-select: auto;">
-            <%=button_to "Ajouter au panier",line_items_path(product_id: @product), class:"btn btn-warning" %>
-          </nav>
+          <% unless @product.user_id === current_user.id %>
+            <nav class="m-2" aria-label="Pagination" style="user-select: auto;">
+              <%=button_to "Ajouter au panier",line_items_path(product_id: @product), class:"btn btn-warning" %>
+            </nav>
           <hr>
-          <% if @product.user.id == current_user.id %>
-          <%= link_to 'Edit', edit_product_path(@product) %> |
+            <%= link_to 'Edit', edit_product_path(@product) %>
+          <% else %>
+            <%= link_to 'Back to catalogue', root_path %>
           <% end %>
-          <%= link_to 'Back', root_path %>
       </div>
 
       <div class="col-md-4" style="user-select: auto;">
@@ -43,13 +44,6 @@
           <div class="p-4 mb-3 bg-light rounded" style="user-select: auto;">
             <%= cl_image_tag(@product.image_url.key, width: 300, height: 200, crop: :scale) %>
             <p><span><%= @product.category.name %>/<%= @product.subcategory.name %></span></p>
-          </div>
-
-          <div class="p-4" style="user-select: auto;">
-            <h4 class="fst-italic" style="user-select: auto;">Produits similaires</h4>
-            <ol class="list-unstyled mb-0" style="user-select: auto;">
-              <li>...</li>
-            </ol>
           </div>
         </div>
       </div>

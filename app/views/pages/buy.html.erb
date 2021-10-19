@@ -14,9 +14,9 @@
     <% @orders.each do |order| %>
       <% cache order do %>
     <tr>
-      <td><%= porder.created_at.strftime("%d %B %Y") %></td>
+      <td><%= order.created_at.strftime("%d %B %Y") %></td>
       <td>Je vais vous ecrire un livre</td>
-      <td class="badge bg-info"><%= number_to_currency 50, unit: "€", separator: ",", format: "%n%u" %></td>
+      <td class="badge bg-info"><%= number_to_currency order.cart_total, unit: "€", separator: ",", format: "%n%u" %></td>
       <td><%= order.status %></td>
       <td><%= link_to "show", order %></td>
     </tr>

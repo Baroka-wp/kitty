@@ -3,8 +3,8 @@ class OrdersController < ApplicationController
   include CurrentCart
   before_action :set_cart
   before_action :redirect_if_card_is_empty, only: [:new]
-  before_action :set_order, only: %i[ show edit update destroy ]
-  before_action :check_user, only: [:edit, :update, :destroy]
+  before_action :set_order, only: %i[ show edit update destroy validate_order ]
+  before_action :check_user, only: [:show, :edit, :update, :destroy, :validate_order]
 
   def index
     @orders = Order.all
@@ -28,6 +28,12 @@ class OrdersController < ApplicationController
     @order = current_user.orders.new(order_params)
     @order.status = "ordered"
     @order.cart_id = @cart.id
+    @order.product_name = @cart.line_item.product.title
+    @order.cart_total = @cart.line_item.product.price
+    @order.cart_product_id = @cart.line_item.product.id
+    @order.buyer = current_user.profil.name
+    @order.seller_id = @cart.line_item.product.user.id
+
     respond_to do |format|
       if @order.save
         #session.delete(:cart_id)
@@ -40,8 +46,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  def capture_order
-    # PAYPAL CAPTURE ORDER
+  def validate_order
+    @order.update(status: params[:status])
+    redirect_to request.referrer
   end
 
   # PATCH/PUT /orders/1 or /orders/1.json
@@ -77,13 +84,13 @@ class OrdersController < ApplicationController
       params.require(:order).permit(:first_name, :last_name, :email, :adresse, :status)
     end
     def redirect_if_card_is_empty
-      if @cart.line_items.empty?
+      if @cart.line_item.nil?
         redirect_to root_path, notice: "Panier vide"
       end
     end
 
     def check_user
-      if @order.user_id != current_user.id
+      unless @order.user_id == current_user.id || @order.seller_id == current_user.id
         redirect_to orders_path
       end
     end

@@ -1,1 +1,5 @@
-<%=@cart.line_items.count %>
+<% if @cart.line_item.nil? %>
+  <span>0</span>
+<% else %>
+  <span>1</span>
+<% end %>

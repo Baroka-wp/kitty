@@ -1,21 +1,25 @@
 class Cart < ApplicationRecord
-  has_many :line_items, dependent: :destroy
+  has_one :line_item, dependent: :destroy
   belongs_to :user
 
-  def add_product(product)
-    item = line_items.find_by(product: product)
-
-    if item
-      item.quantity += 1
-    else
-      item = line_items.new(product: product)
-    end
-
-    item
-  end
+  # def add_product(product)
+  #   item = line_items.find_by(product: product)
+  #
+  #   if item
+  #     item.quantity += 1
+  #   else
+  #     item = line_items.new(product: product)
+  #   end
+  #
+  #   item
+  # end
 
   def total
-    line_items.to_a.sum(&:total)
+    if line_item
+    line_item.product.price
+    else
+      0
+    end
   end
 
   def livraison
