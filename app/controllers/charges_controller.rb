@@ -19,12 +19,13 @@ class ChargesController < ApplicationController
       customer: customer.id,
       amount: @amount,
       description: 'Rails Stripe customer',
-      currency: 'eur',
+      currency: 'XOF',
     })
     @order = Order.find(params[:order_id])
     @order.update(status: "payed")
-    @cart.destroy
-    session.delete(:cart_id)
+    PayementMailer.with(order: @order ).paiement_email.deliver_now
+    #@cart.destroy
+    #session.delete(:cart_id)
     redirect_to request.referrer, notice:"Paiement accepté !"
 
   rescue Stripe::CardError => e

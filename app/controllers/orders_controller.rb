@@ -34,9 +34,10 @@ class OrdersController < ApplicationController
     @order.buyer = current_user.profil.name
     @order.seller_id = @cart.line_item.product.user.id
 
+    @seller_mail = @cart.line_item.product.user.email
     respond_to do |format|
       if @order.save
-        #session.delete(:cart_id)
+        OrderMailer.with(order: @order, seller_mail: @seller_mail ).new_order_email.deliver_now
         format.html { redirect_to @order, notice: "Commande validée." }
         format.json { render :show, status: :created, location: @order }
       else

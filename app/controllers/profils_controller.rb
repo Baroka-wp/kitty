@@ -24,9 +24,10 @@ class ProfilsController < ApplicationController
   def create
     @profil = Profil.new(profil_params)
     @profil.user_id = current_user.id
-
+    @profil.status = "pending"
     respond_to do |format|
       if @profil.save
+        
         format.html { redirect_to @profil, notice: "Profil was successfully created." }
         format.json { render :show, status: :created, location: @profil }
       else
