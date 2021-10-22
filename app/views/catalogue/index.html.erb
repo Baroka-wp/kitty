@@ -5,37 +5,6 @@
       <p class="lead mb-0" style="user-select: auto;"><a href="/users/sign_up" class="text-white fw-bold btn btn-sm btn-primary" style="user-select: auto;">Commencer</a></p>
     </div>
 </div>
-<div class="container row mb-2" style="user-select: auto;">
-  <h4 class="pb-4 mb-4 fst-italic border-bottom text-center text-success" style="user-select: auto;">
-    Des exemples de ce que vous pouvez vendre sur Samurai e-job ...
-  </h4>
-  <% cache @products do %>
-    <% @products.each do |product| %>
-      <% cache product do %>
-      <div class="col-sm-6 col-lg-4 mb-2" style="user-select: auto;">
-            <div class="card shadow-sm" style="user-select: auto;">
-              <%= cl_image_tag(product.image_url.key, width: 200, height: 200, crop: :scale, class:"bd-placeholder-img card-img-top" ) %>
-              <div class="card-body" style="user-select: auto;">
-                <h5 class="mb-2" style="user-select: auto;"><%= product.title %></h5>
-                <p class="card-text" style="user-select: auto;"><%= truncate product.description, length: 80, escape: false  %></p>
-                <small class="text-muted" style="user-select: auto;"><%= product.user.profil.name unless product.user.profil.nil? %></small>
-
-                <div class="d-flex justify-content-center align-items-center" style="user-select: auto;">
-                  <div class="btn-group" style="user-select: auto;">
-                    <%=link_to "A parti de #{number_to_currency product.price, unit: "FCFA", separator: ".", format: "%n%u" }",product, class:"btn btn-md btn-outline-success" %>
-                  </div>
-                </div>
-              </div>
-            </div>
-      </div>
-      <% end %>
-    <% end %>
-    <nav class="blog-pagination" aria-label="Pagination" style="user-select: auto;">
-      <a class="btn btn-outline-primary" href="<%= new_product_path %>">Ajouter votre product</a>
-    </nav>
-  <% end %>
-</div>
-
 <div class="row mx-auto mb-4" style="user-select: auto;">
       <h3 class="pb-4 mb-2 border-bottom fst-italic text-center" style="user-select: auto;">
         Samurai e-job vous permet de :
@@ -83,7 +52,7 @@
         </div>
       </div>
 </div>
-<br><br><br>
+<br><br>
 <div class="row d-flex align-items-center mt-4 text-center" style="user-select: auto;">
     <div class="col-4">
       <h2 class="pb-4 mb-2  fst-italic text-center" style="user-select: auto;">
@@ -150,7 +119,37 @@
     </div>
     </div>
 </div>
-<br><br><br>
+<br><br>
+<div class="container row mb-2" style="user-select: auto;">
+  <h4 class="pb-4 mb-4 fst-italic border-bottom text-center text-success" style="user-select: auto;">
+    Des exemples de ce que vous pouvez vendre sur Samurai e-job ...
+  </h4>
+  <% cache @products do %>
+    <% @products.each do |product| %>
+      <% cache product do %>
+      <div class="col-sm-6 col-lg-4 mb-2" style="user-select: auto;">
+            <div class="card shadow-sm" style="user-select: auto;">
+              <%= cl_image_tag(product.image_url.key, width: 200, height: 200, crop: :scale, class:"bd-placeholder-img card-img-top" ) %>
+              <div class="card-body" style="user-select: auto;">
+                <h5 class="mb-2" style="user-select: auto;"><%= product.title %></h5>
+                <p class="card-text" style="user-select: auto;"><%= truncate product.description, length: 80, escape: false  %></p>
+                <small class="text-muted" style="user-select: auto;"><%= product.user.profil.name unless product.user.profil.nil? %></small>
+
+                <div class="d-flex justify-content-center align-items-center" style="user-select: auto;">
+                  <div class="btn-group" style="user-select: auto;">
+                    <%=link_to "A parti de #{number_to_currency product.price, unit: "FCFA", separator: ".", format: "%n%u" }",product, class:"btn btn-md btn-outline-success" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <% end %>
+    <% end %>
+    <nav class="blog-pagination" aria-label="Pagination" style="user-select: auto;">
+      <a class="btn btn-outline-primary" href="<%= new_product_path %>">Ajouter votre product</a>
+    </nav>
+  <% end %>
+</div>
 <div class="row mb-2 mt-4" style="user-select: auto;">
   <h2 class="pb-4 mb-2 border-bottom fst-italic text-center" style="user-select: auto;">
     Quelques témoignages sur Samurai e-job  :

@@ -60,7 +60,7 @@
             </div>
           </div>
           <div class="col-sm-6" style="user-select: auto;">
-            <label for="address" class="form-label" style="user-select: auto;">Product price (en euro)</label>
+            <label for="address" class="form-label" style="user-select: auto;">Product price (en CFA)</label>
             <%= form.text_field :price, class:"form-control" %>
             <div class="invalid-feedback" style="user-select: auto;">
               Please enter price .
@@ -89,10 +89,10 @@
 
           <hr class="my-2" style="user-select: auto;">
 
-          <div class="form-check" style="user-select: auto;">
+          <!-- <div class="form-check" style="user-select: auto;">
             <input type="checkbox" class="form-check-input" id="same-address" style="user-select: auto;">
             <label class="form-check-label" for="same-address" style="user-select: auto;">j'accept les termes et conditions</label>
-          </div>
+          </div> -->
 
           <button class="w-100 btn btn-warning btn-lg" type="submit" style="user-select: auto;">Valider</button>
         <% end %>

@@ -8,6 +8,21 @@ class Product < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 1 }
   validates :title, uniqueness: { case_sensitive: false }
 
+  def self.search(search)
+    if search
+      where("title LIKE ? OR description LIKE ?", "%#{search}%","%#{search}%")
+    else
+      all
+    end
+  end
+
+  def self.search_by_category(search_by_category)
+    if search_by_category
+      where(category_id: search_by_category )
+    else
+      all
+    end
+  end
 
   def delivered_time
     case self.delivered

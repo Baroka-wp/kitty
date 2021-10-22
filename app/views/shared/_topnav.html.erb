@@ -24,18 +24,23 @@
       </div>
     </div>
   </header>
-
   <div class="nav-scroller py-1 mb-2" style="user-select: auto;">
     <nav class="nav d-flex justify-content-between" style="user-select: auto;">
-      <a class="p-2 link-secondary" href="#" style="user-select: auto;">Design</a>
-      <a class="p-2 link-secondary" href="#" style="user-select: auto;">Graphisme</a>
-      <a class="p-2 link-secondary" href="#" style="user-select: auto;">Security & Reseaux</a>
-      <a class="p-2 link-secondary" href="#" style="user-select: auto;">Site web</a>
-      <a class="p-2 link-secondary" href="#" style="user-select: auto;">Reseaux sociaux</a>
-      <a class="p-2 link-secondary" href="#" style="user-select: auto;">Formation & Coaching</a>
-      <a class="p-2 link-secondary" href="#" style="user-select: auto;">IA/API</a>
-      <a class="p-2 link-secondary" href="#" style="user-select: auto;">Opinion</a>
-      <a class="p-2 link-secondary" href="#" style="user-select: auto;">Style de vie</a>
-      <a class="p-2 link-secondary" href="#" style="user-select: auto;">Business</a>
+      <a class="p-2 link-secondary" href="<%= products_path(search_by_category: "1001" )%>" data-method="get" style="user-select: auto;">Design</a>
+      <a class="p-2 link-secondary" href="<%= products_path(search_by_category: "1002" )%>" data-method="get" style="user-select: auto;">Graphisme</a>
+      <a class="p-2 link-secondary" href="<%= products_path(search_by_category: "1003")%>" data-method="get" style="user-select: auto;">Security & Reseaux</a>
+      <a class="p-2 link-secondary" href="<%= products_path(search_by_category: "1004")%>" data-method="get" style="user-select: auto;">Site web</a>
+      <a class="p-2 link-secondary" href="<%= products_path(search_by_category: "1005")%>" data-method="get" style="user-select: auto;">Reseaux sociaux</a>
+      <a class="p-2 link-secondary" href="<%= products_path(search_by_category: "1006")%>" data-method="get" data-method="post"style="user-select: auto;">Formation & Coaching</a>
+      <a class="p-2 link-secondary" href="<%= products_path(search_by_category: "1007")%>" data-method="get" style="user-select: auto;">IA/API</a>
+      <a class="p-2 link-secondary" href="<%= products_path(search_by_category: "1008")%>" data-method="get" style="user-select: auto;">Style de vie</a>
+      <a class="p-2 link-secondary" href="<%= products_path(search_by_category: "1009")%>" data-method="get" style="user-select: auto;">Business</a>
     </nav>
+  </div>
+  <div class="container w-50">
+    <%= form_tag products_path, :method => 'get' do %>
+      <p>
+        <%= text_field_tag :search, params[:search], class:"form-control form-control-dark w-100", placeholder:"Trouvez un produit"%>
+      </p>
+    <% end %>
   </div>

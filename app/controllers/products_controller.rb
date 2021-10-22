@@ -5,7 +5,14 @@ class ProductsController < ApplicationController
   before_action :check_if_user_profil_present!, only: %i[new create]
 
   def index
-    @products = Product.all
+    if params[:search]
+      @products = Product.search(params[:search])
+    elsif params[:search_by_category]
+      @products = Product.search_by_category(params[:search_by_category])
+    else
+      @products = Product.all
+    end
+
   end
 
   def show
