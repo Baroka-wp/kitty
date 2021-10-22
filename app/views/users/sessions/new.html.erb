@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-center align-items-center">
+  <main class="form-signin" style="user-select: auto;">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <h1 class="h3 mb-3 fw-normal" style="user-select: auto;">Bon retour 🤝 </h1>
+      <div class="form-floating" style="user-select: auto;">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"floatingInput", placeholder:"name@example.com" %>
+        <label for="floatingInput" style="user-select: auto;">Email address</label>
+      </div>
+      <div class="form-floating" style="user-select: auto;">
+        <%= f.password_field :password, autocomplete: "current-password", class:"form-control", id:"floatingPassword", placeholder:"Password" %>
+        <label for="floatingPassword" style="user-select: auto;">Password</label>
+      </div>
+
+      <div class="checkbox mb-3" style="user-select: auto;">
+          <% if devise_mapping.rememberable? %>
+              <label style="user-select: auto;">
+              <%= f.check_box :remember_me %>
+              Remember me
+              </label>
+          <% end %>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" style="user-select: auto;">Sign in</button>
+    <% end %>
+    <%= render "users/shared/links" %>
+  </main>
+  <div class="liner-scroll-points-container" style="user-select: auto;"></div>
+</div>

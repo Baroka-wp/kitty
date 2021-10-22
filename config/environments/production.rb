@@ -99,7 +99,7 @@ Rails.application.configure do
   config.active_storage.service = :cloudinary
 
   config.action_mailer.delivery_method = :smtp
-  host = 'localhost:3000' #replace with your own url
+  host = 'https://desolate-oasis-32544.herokuapp.com/' #replace with your own url
   config.action_mailer.default_url_options = { host: host }
 
   # SMTP settings for gmail

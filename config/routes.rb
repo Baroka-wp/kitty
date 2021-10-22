@@ -21,7 +21,12 @@ Rails.application.routes.draw do
   get "/myproduct", to:"pages#product"
   post "/validate_order", to:"orders#validate_order"
 
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    confirmations: 'users/confirmations'
+  }
+
   resources :orders
   resources :charges
 
