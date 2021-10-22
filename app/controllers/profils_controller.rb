@@ -1,6 +1,7 @@
 class ProfilsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profil, only: %i[ show edit update destroy ]
+  before_action :check_user, only: [:index]
   layout :resolve_layout
   # GET /profils or /profils.json
   def index
@@ -65,6 +66,11 @@ class ProfilsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def check_user
+      if current_user.email != "birotori@gmail.com"
+        redirect_to root_path
+      end
+    end
     def set_profil
       @profil = current_user.profil
     end
