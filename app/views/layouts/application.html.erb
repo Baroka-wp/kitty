@@ -4,8 +4,11 @@
   <body class="container">
     <%= render 'shared/topnav' %>
     <main>
-      <p id="alert"><%= alert %></p>
-      <p id="notice"><%= notice %></p>
+      <% flash.each do |key, message| %>
+        <div class="alert <%= flash_class(key) %> fade show text-center" role="alert">
+          <%= message %>
+        </div>
+      <% end %>
       <div id="spinner" class="modal" style="display:none;">
         <div class="text-center">
           <div class="spinner-border" role="status" style="margin: 30%;" >
