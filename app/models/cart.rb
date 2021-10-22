@@ -1,5 +1,5 @@
 class Cart < ApplicationRecord
-  has_one :line_item
+  has_one :line_item, dependent: :delete
   belongs_to :user
 
   # def add_product(product)

@@ -19,7 +19,7 @@
             <tr>
               <td><%= sell.created_at.strftime("%d %B %Y") %></td>
               <td><%= sell.product_name %></td>
-              <td class="badge bg-info"><%= number_to_currency sell.cart_total, unit: "FCFA", separator: ".", format: "%n%u" %></td>
+              <td class="badge bg-info"><%= number_to_currency sell.cart_total, unit: "$", separator: ",", format: "%n%u" %></td>
               <td><%= sell.status %></td>
               <td><%= link_to "show", sell %></td>
             </tr>
@@ -34,7 +34,7 @@
         <div class="position-sticky" style="top: 2rem; user-select: auto;">
           <div class="p-4 mb-3 bg-light rounded" style="user-select: auto;">
             <h6>Votre solde</h6>
-            <p class="text-info"> <%=number_to_currency @solde, unit: "€", separator: ",", format: "%n%u" %> </p>
+            <p class="text-info"> <%=number_to_currency @solde, unit: "$", separator: ",", format: "%n%u" %> </p>
           </div>
           <a href="#" class="btn btn-sm btn-danger"> Faire un retait</a>
         </div>

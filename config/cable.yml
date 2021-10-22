@@ -1,10 +1,11 @@
 development:
   adapter: async
+  url: "redis://localhost:6379/1"
 
 test:
   adapter: test
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  url: <%= ENV.fetch("REDIS_URL") { "redis://desolate-oasis-32544.herokuapp.com/" } %>
   channel_prefix: kit_production

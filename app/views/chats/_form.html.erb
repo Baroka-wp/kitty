@@ -1,0 +1,19 @@
+<%= form_for [order, chat], remote: true do |form| %>
+  <% if chat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(chat.errors.count, "error") %> prohibited this chat from being saved:</h2>
+
+      <ul>
+        <% chat.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-floating" style="user-select: auto;">
+    <%= form.text_area :message, autocomplete: "new-message", class:"form-control", placeholder:"your message" %>
+    <label for="message" style="user-select: auto;">Your message</label>
+  </div>
+
+  <button class="w-100 btn btn-sm btn-primary" type="submit" style="user-select: auto;"> <i class="fas fa-paper-plane"></i> Send</button>
+<% end %>

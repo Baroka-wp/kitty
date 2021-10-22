@@ -137,7 +137,7 @@
 
                 <div class="d-flex justify-content-center align-items-center" style="user-select: auto;">
                   <div class="btn-group" style="user-select: auto;">
-                    <%=link_to "A parti de #{number_to_currency product.price, unit: "FCFA", separator: ".", format: "%n%u" }",product, class:"btn btn-md btn-outline-success" %>
+                    <%=link_to "A parti de #{number_to_currency product.price, unit: "$", separator: ",", format: "%n%u" }",product, class:"btn btn-md btn-outline-success" %>
                   </div>
                 </div>
               </div>

@@ -8,11 +8,11 @@ Rails.application.routes.draw do
       resources :orders
       resources :line_items
       resources :carts
-
       root to: "users#index"
     end
-  resources :profils
 
+  resources :profils
+  mount ActionCable.server => '/cable'
 
   get "/buy", to:"pages#buy"
   get "/sell", to:"pages#sell"
@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations'
   }
 
-  resources :orders
+  resources :orders do
+    resources :chats
+  end
   resources :charges
 
   resources :line_items

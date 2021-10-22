@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :user
+  has_many :chats, dependent: :destroy
 
   enum status: [:ordered, :payed, :in_progess, :sent, :close]
 

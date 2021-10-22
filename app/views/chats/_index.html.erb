@@ -1,0 +1,11 @@
+<div class="">
+
+</div>
+  <% chats.each do |chat| %>
+    <% if chat.id.present? %>
+    <div class="col pl-2 mb-2 float-left" style="max-width:51%;">
+      <p class="m-0 p-2 rounded text-primary" style="background:#F7F2A8"><%= chat.message %> </p>
+      <span style="font-size:.8em;"><%= chat.created_at.strftime("%d %b at %I:%M%p") %> </span>
+    </div>
+    <% end %>
+  <% end %>

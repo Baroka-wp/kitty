@@ -11,7 +11,7 @@
           <p class="badge bg-info" style="user-select: auto;"><%= @product.delivered_time %></p>
           <h5 style="user-select: auto;">Prix de base</h5>
 
-          <strong class="d-inline-block mb-2 text-primary" style="user-select: auto;"><%= number_to_currency @product.price, unit: " FCFA", separator: ".", format: "%n%u" %></strong>
+          <strong class="d-inline-block mb-2 text-primary" style="user-select: auto;"><%= number_to_currency @product.price, unit: "$", separator: ",", format: "%n%u" %></strong>
           <hr>
           <% unless @product.user_id == current_user.id %>
             <nav class="m-2" aria-label="Pagination" style="user-select: auto;">

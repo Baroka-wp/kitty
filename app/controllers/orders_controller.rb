@@ -12,6 +12,8 @@ class OrdersController < ApplicationController
 
   # GET /orders/1 or /orders/1.json
   def show
+    @chats = @order.chats
+    @chat = @order.chats.build
   end
 
   # GET /orders/new

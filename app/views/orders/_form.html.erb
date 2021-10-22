@@ -12,14 +12,14 @@
                   <h6 class="my-0" style="user-select: auto;"><%= @cart.line_item.product.title %></h6>
                   <small class="text-muted" style="user-select: auto;">x <span id="item_quantity<%= @cart.line_item.id %>"><%=render "line_items/quantity", item: @cart.line_item%></small>
                 </div>
-                <span class="text-muted" style="user-select: auto;"><%=number_to_currency @cart.line_item.total, unit: "€", separator: ",", format: "%n%u" %></span>
+                <span class="text-muted" style="user-select: auto;"><%=number_to_currency @cart.line_item.total, unit: "$", separator: ",", format: "%n%u" %></span>
               </li>
               <% end %>
           <%# end %>
 
           <li class="list-group-item d-flex justify-content-between" style="user-select: auto;">
             <span style="user-select: auto;">Total (EUR)</span>
-            <strong style="user-select: auto;"><%= number_to_currency @cart.ttc, unit: "€", separator: ",", format: "%n%u" %></strong>
+            <strong style="user-select: auto;"><%= number_to_currency @cart.total, unit: "$", separator: ",", format: "%n%u" %></strong>
           </li>
         </ul>
 

@@ -1,0 +1,3 @@
+$("#chats_area").html("<%= j(render 'chats/index', { chats: @chat.order.chats, order: @chat.order }) %>");
+$("textarea").val('');
+$("#notice").html("<%= j flash[:notice] %>");

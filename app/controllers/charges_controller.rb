@@ -8,7 +8,7 @@ class ChargesController < ApplicationController
 
   def create
     # Amount in cents
-    @amount = (@cart.ttc * 100).to_i
+    @amount = (@cart.total * 100).to_i
 
     customer = Stripe::Customer.create({
       email: params[:stripeEmail],
@@ -19,13 +19,13 @@ class ChargesController < ApplicationController
       customer: customer.id,
       amount: @amount,
       description: 'Rails Stripe customer',
-      currency: 'XOF',
+      currency: 'usd',
     })
     @order = Order.find(params[:order_id])
     @order.update(status: "payed")
     PayementMailer.with(order: @order ).paiement_email.deliver_now
-    #@cart.destroy
-    #session.delete(:cart_id)
+    @cart.destroy
+    session.delete(:cart_id)
     redirect_to request.referrer, notice:"Paiement accepté !"
 
   rescue Stripe::CardError => e
