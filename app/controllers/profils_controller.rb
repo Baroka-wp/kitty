@@ -27,7 +27,7 @@ class ProfilsController < ApplicationController
     @profil.status = "pending"
     respond_to do |format|
       if @profil.save
-        
+        ProfilMailer.with(profil: @profil).new_profil_email.deliver_now
         format.html { redirect_to @profil, notice: "Profil was successfully created." }
         format.json { render :show, status: :created, location: @profil }
       else
@@ -41,6 +41,9 @@ class ProfilsController < ApplicationController
   def update
     respond_to do |format|
       if @profil.update(profil_params)
+        @user_email = @profil.user.email
+        ProfilMailer.with(profil: @profil, user_email:@user_email).update_profil_email.deliver_now
+
         format.html { redirect_to @profil, notice: "Profil was successfully updated." }
         format.json { render :show, status: :ok, location: @profil }
       else
@@ -64,6 +67,9 @@ class ProfilsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_profil
       @profil = current_user.profil
+    end
+    def set_profil_for_admin
+      @profil = Profil.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

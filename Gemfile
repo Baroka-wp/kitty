@@ -59,6 +59,7 @@ gem 'activemerchant'
 gem 'stripe'
 gem 'dotenv', '~> 2.1', '>= 2.1.1'
 gem 'dotenv-rails', groups: [:development, :test]
+gem "administrate"
 
 #gem 'paypal-sdk-merchant'
 #gem 'paypal-checkout-sdk'

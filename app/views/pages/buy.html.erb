@@ -16,7 +16,7 @@
     <tr style="font-size:12px;">
       <td><%= order.created_at.strftime("%d %B %Y") %></td>
       <td><%= order.product_name %></td>
-      <td class="bg-<%= order.status.eql?("ordered") ? "warning" : "info" %>"><%= number_to_currency order.cart_total, unit: "€", separator: ",", format: "%n%u" %></td>
+      <td class="bg-<%= order.status.eql?("ordered") ? "warning" : "info" %>"><%= number_to_currency order.cart_total, unit: "FCFA", separator: ".", format: "%n%u" %></td>
       <td><%= order.status %></td>
       <td><%= link_to "show", order %></td>
     </tr>

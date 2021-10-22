@@ -1,4 +1,3 @@
-<h3 style="user-select: auto;">Votre profil </h3>
 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="user-select: auto;">
   <div class="col-auto d-float" style="margin-top:-3;">
     <img src="<%= cloudinary_url(@profil.avatar.key, width: 250, height: 250, crop: :scale) %>" alt="" class="bd-placeholder-img" width="100%" height="250">
@@ -6,18 +5,10 @@
   <div class="col p-4 d-flex flex-column position-static" style="user-select: auto;">
     <strong class="d-inline-block mb-2 text-warning" style="user-select: auto;"><%= @profil.name %></strong>
     <p class="mb-auto" style="user-select: auto;">"<%= @profil.bio %>"</p>
-    <span class="mb-2 badge bg-info">Profil verifié</span>
+    <span class="mb-2 badge bg-<%=@profil.status.eql?("pending") ? "light" : "success" %>"><%= @profil.status %></span>
 
   </div>
 </div>
-<p>
-<strong>Document:</strong>
-<%= @profil.document %>
-</p>
-<p>
-<strong>Doc type:</strong>
-<%= @profil.type_of_doc %>
-</p>
 
 
 <%= link_to 'Edit', edit_profil_path(@profil) %> |

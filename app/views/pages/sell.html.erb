@@ -19,7 +19,7 @@
             <tr>
               <td><%= sell.created_at.strftime("%d %B %Y") %></td>
               <td><%= sell.product_name %></td>
-              <td class="badge bg-info"><%= number_to_currency sell.cart_total, unit: "€", separator: ",", format: "%n%u" %></td>
+              <td class="badge bg-info"><%= number_to_currency sell.cart_total, unit: "FCFA", separator: ".", format: "%n%u" %></td>
               <td><%= sell.status %></td>
               <td><%= link_to "show", sell %></td>
             </tr>

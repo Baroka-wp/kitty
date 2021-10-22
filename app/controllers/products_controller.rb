@@ -62,7 +62,11 @@ class ProductsController < ApplicationController
     end
     def check_user
       if @product.user_id != current_user.id
-        redirect_to orders_path
+        redirect_to orders_path, notice:"Acces interdit"
       end
+      if current_user.profil.status == "pending"
+        redirect_to root_path, alert:"Votre profil n'a pas encore validé."
+      end
+
     end
 end

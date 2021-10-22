@@ -15,7 +15,7 @@
     <tr>
       <td><%= p.created_at.strftime("%d %B %Y") %></td>
       <td><%= link_to p.title, product_path(p) %></td>
-      <td class="badge bg-info"><%= number_to_currency p.price, unit: "€", separator: ",", format: "%n%u" %></td>
+      <td class="badge bg-info"><%= number_to_currency p.price, unit: "FCFA", separator: ".", format: "%n%u" %></td>
     </tr>
     <% end %>
     <% end %>
