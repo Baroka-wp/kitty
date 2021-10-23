@@ -24,14 +24,16 @@ class ChatsController < ApplicationController
   def create
     @order = Order.find(params[:order_id])
     @chat = @order.chats.new(chat_params)
+    @seller_mail = User.find(@order.seller_id).email
 
     respond_to do |format|
       if @chat.save
         ActionCable.server.broadcast("chat_#{@chat.order_id}",
           { message: @chat.message,
             date: @chat.created_at.strftime("%d %b at %I:%M%p") })
-
         format.js { render :index }
+        ChatMailer.with(chat:@chat, order: @order, seller_mail: @seller_mail ).new_chat_email.deliver_now
+
         #format.html { redirect_to @chat, notice: "Chat was successfully created." }
         #format.json { render :show, status: :created, location: @chat }
       else
