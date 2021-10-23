@@ -6,6 +6,6 @@ test:
   adapter: test
 
 production:
-  adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://desolate-oasis-32544.herokuapp.com/" } %>
+  adapter: async
+  url: <%= ENV.fetch("REDIS_URL") { "redis://desolate-oasis-32544.herokuapp.com/1" } %>
   channel_prefix: kit_production
