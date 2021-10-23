@@ -13,4 +13,8 @@ $(document).ready(function() {
    $('button[type="submit"]').click(function() {
      $('#spinner').show();
    });
+   $(document).on('turbolinks:load', function() {
+     // hide spinner
+     $("#spinner").hide();
+   });
 });
