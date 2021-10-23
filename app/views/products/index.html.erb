@@ -19,6 +19,10 @@
                     <%=link_to "A parti de #{number_to_currency product.price, unit: "$", separator: ",", format: "%n%u" }",product, class:"btn btn-md btn-outline-success" %>
                   </div>
                 </div>
+                <hr>
+                <div class="d-flex justify-content-center align-items-center">
+                  <%#= social_share_button_tag(product.title, :url => product_path(product),:allow_sites => %w(twitter facebook linkedin)) %>
+                </div>
               </div>
             </div>
       </div>

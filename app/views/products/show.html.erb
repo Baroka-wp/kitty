@@ -30,6 +30,11 @@
             <%= cl_image_tag(@product.image_url.key, width: 300, height: 200, crop: :scale) %>
             <p><span><%= @product.category.name %>/<%= @product.subcategory.name %></span></p>
           </div>
+          <hr>
+          <div class="d-flex justify-content-center align-items-center">
+            <%#= render_shareable :buttons=> ['twitter', 'facebook', 'linkedin'] %>
+            <%= rails_social_share_button_tag(@product.title, :allow_sites => %w(twitter facebook linkedin)) %>
+          </div>
         </div>
       </div>
   </div>
