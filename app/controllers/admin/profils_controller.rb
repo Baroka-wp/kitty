@@ -7,7 +7,7 @@ module Admin
     #   super
     #   send_foo_updated_email(requested_resource)
       @profil = Profil.find(params[:id])
-      @profil.update(status: "valide")
+      @profil.update(status:"valide")
       flash[:notice] = "Profil updated"
       @user_email = @profil.user.email
       ProfilMailer.with(profil: @profil, user_email:@user_email).update_profil_email.deliver_now

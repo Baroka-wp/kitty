@@ -1,22 +1,33 @@
-<div class="dropdown">
-  <% if user_has_profil? %>
-  <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="user-select: auto;">
-    <img src="<%= cloudinary_url(current_user.profil.avatar.key, width: 300, height: 200)%>" alt="" width="32" height="32" class="rounded-circle me-2" style="user-select: auto;">
-    <strong class="text-dark" style="user-select: auto;"><%=@current_user.profil.name %></strong>
-  </a>
-  <% else %>
-  <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="user-select: auto;">
-      <strong class="text-dark" style="user-select: auto;"><%= current_user.email %></strong>
-  </a>
+<% cache current_user do %>
+  <% cache @cart do %>
+  <div class="dropdown">
+    <% if user_has_profil? %>
+    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="user-select: auto;">
+      <!-- <img src="<%#= cloudinary_url(current_user.profil.avatar.key, width: 300, height: 200)%>" alt="" width="32" height="32" class="rounded-circle me-2" style="user-select: auto;">
+      <strong class="text-dark" style="user-select: auto;"><%#= current_user.profil.name %></strong> -->
+      <span class="text-warning" style="">
+        <img src="<%= cloudinary_url(current_user.profil.avatar.key, width: 400, height: 300)%>" alt="" width="42" height="42" class="rounded-circle" style="user-select: auto;">
+
+        <i class="fas fa-bars fa-2x"></i>
+      </span>
+    </a>
+    <% else %>
+    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="user-select: auto;">
+      <span class="text-warning" style="">
+        <i class="fas fa-bars fa-2x"></i>
+      </span>
+    </a>
+    <% end %>
+    <ul class="dropdown-menu dropdown-menu-white text-small shadow" aria-labelledby="dropdownUser1" style="user-select: auto; position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate(0px, -34px);" data-popper-placement="bottom-start" data-popper-reference-hidden="">
+      <li style="user-select: auto;"><a class="dropdown-item" href="<%= current_profil_path %>" style="user-select: auto;">Profile</a></li>
+      <li style="user-select: auto;"><a class="dropdown-item" href="<%= myproduct_path%>" style="user-select: auto;">Mes Produits</a></li>
+      <li style="user-select: auto;"><a class="dropdown-item" href="<%= sell_path %>" style="user-select: auto;">Mes Ventes</a></li>
+      <li style="user-select: auto;"><a class="dropdown-item" href="<%= buy_path %>" style="user-select: auto;">Mes Achats</a></li>
+      <li style="user-select: auto;"><a class="dropdown-item" href="<%= cart_path(@cart) %>" style="user-select: auto;">Mon Panier</a></li>
+      <li style="user-select: auto;"><a class="dropdown-item" href="<%= retrait_path %>" style="user-select: auto;">Retraits</a></li>
+      <li style="user-select: auto;"><hr class="dropdown-divider" style="user-select: auto;"></li>
+      <li style="user-select: auto;"><a class="dropdown-item" data-method="delete" href="<%=destroy_user_session_path%>" method="delete" style="user-select: auto;">Sign out</a></li>
+    </ul>
+  </div>
   <% end %>
-  <ul class="dropdown-menu dropdown-menu-white text-small shadow" aria-labelledby="dropdownUser1" style="user-select: auto; position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate(0px, -34px);" data-popper-placement="bottom-start" data-popper-reference-hidden="">
-    <li style="user-select: auto;"><a class="dropdown-item" href="<%= current_profil_path %>" style="user-select: auto;">Profile</a></li>
-    <li style="user-select: auto;"><a class="dropdown-item" href="<%= myproduct_path%>" style="user-select: auto;">Mes Produits</a></li>
-    <li style="user-select: auto;"><a class="dropdown-item" href="<%= sell_path %>" style="user-select: auto;">Mes Ventes</a></li>
-    <li style="user-select: auto;"><a class="dropdown-item" href="<%= buy_path %>" style="user-select: auto;">Mes Achats</a></li>
-    <li style="user-select: auto;"><a class="dropdown-item" href="<%= cart_path(@cart) %>" style="user-select: auto;">Mon Panier</a></li>
-    <li style="user-select: auto;"><a class="dropdown-item" href="<%= retrait_path %>" style="user-select: auto;">Retraits</a></li>
-    <li style="user-select: auto;"><hr class="dropdown-divider" style="user-select: auto;"></li>
-    <li style="user-select: auto;"><a class="dropdown-item" data-method="delete" href="<%=destroy_user_session_path%>" method="delete" style="user-select: auto;">Sign out</a></li>
-  </ul>
-</div>
+<% end %>

@@ -42,6 +42,12 @@ class Product < ApplicationRecord
       return "7 day"
     end
   end
+
+  def cached_products
+    Rails.cache.fetch([title, description, price]) {id}
+  end
+
+
   #validates :image_url,format: {with: /\.(jpg|png|gif|jpeg)\z/i,message: 'Doit être au format jpg, png ou gif'},
                         #allow_blank: true
 

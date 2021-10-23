@@ -16,8 +16,10 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" style="user-select: auto;"><title style="user-select: auto;">Search</title><circle cx="10.5" cy="10.5" r="7.5" style="user-select: auto;"></circle><path d="M21 21l-5.2-5.2" style="user-select: auto;"></path></svg>
         </a> -->
         <% if user_signed_in? %>
-        <a class="btn btn-sm btn-outline-danger mx-2" href="<%= cart_path(@cart) %>" style='font-size:14px'><i class='fas fa-cart-arrow-down'>(<span id="cart_count"><%= render "line_items/cart_count"%></span>)</i></a>
+          <% cache @cart do %>
+          <a class="btn btn-sm btn-outline-danger mx-2" href="<%= cart_path(@cart) %>" style='font-size:14px'><i class='fas fa-cart-arrow-down'>(<span id="cart_count"><%= render "line_items/cart_count"%></span>)</i></a>
         <!-- <a class="btn btn-sm btn-outline-danger mx-2" href="<%#= orders_path %>" style='font-size:14px'>Achats (<span id="order_count"><%#= Order.count %></span>)</a>-->
+          <% end %>
         <% else %>
         <a class="btn btn-sm btn-outline-secondary" href="/users/sign_in" style="user-select: auto;">Login</a>
         <% end %>

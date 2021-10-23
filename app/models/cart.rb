@@ -2,6 +2,9 @@ class Cart < ApplicationRecord
   has_one :line_item, dependent: :delete
   belongs_to :user
 
+  def self.cached_cart
+    Rails.cache.fetch([id]) { find(id) }
+  end
   # def add_product(product)
   #   item = line_items.find_by(product: product)
   #
