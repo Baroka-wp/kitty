@@ -39,7 +39,7 @@
       <a class="p-2 link-secondary" href="<%= products_path(search_by_category: "1009")%>" data-method="get" style="user-select: auto;">Business</a>
     </nav>
   </div>
-  <div class="container w-50">
+  <div class="container w-75">
     <%= form_tag products_path, :method => 'get' do %>
       <p>
         <%= text_field_tag :search, params[:search], class:"form-control form-control-dark w-100", placeholder:"Trouvez un produit"%>
